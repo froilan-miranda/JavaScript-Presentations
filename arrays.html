@@ -67,8 +67,100 @@ var fruits = ["Apple", "Banana"];
 console.log(fruits.length);
 // 2
 			      		</code></pre>
-
 							</section>
+							<section>
+								<h3>Access (index into) an Array item</h3>
+								<pre><code data-trim>
+var first = fruits[0];
+// Apple
+
+var last = fruits[fruits.length - 1];
+// Banana
+			      		</code></pre>
+							</section>
+							<section>
+								<h3>Loop over an Array</h3>
+								<pre><code data-trim>
+fruits.forEach(function (item, index, array) {
+  console.log(item, index);
+});
+// Apple 0
+// Banana 1
+								</code></pre>
+							</section>
+							<section>
+								<h3>Add to the end of an Array</h3>
+								<pre><code data-trim>
+var newLength = fruits.push("Orange");
+// ["Apple", "Banana", "Orange"]
+								</code></pre>
+							</section>
+							<section>
+								<h3>Remove from the end of an Array</h3>
+								<pre><code data-trim>
+var last = fruits.pop(); // remove Orange (from the end)
+// ["Apple", "Banana"];
+								</code></pre>
+							</section>
+							<section>
+								<h3>Remove from the front of an Array</h3>
+								<pre><code data-trim>
+var first = fruits.shift(); // remove Apple from the front
+// ["Banana"];
+								</code></pre>
+							</section>
+							<section>
+								<h3>Add to the front of an Array</h3>
+								<pre><code data-trim>
+var newLength = fruits.unshift("Strawberry") // add to the front
+// ["Strawberry", "Banana"];
+								</code></pre>
+							</section>
+							<section>
+								<h3>Find the index of an item in the Array</h3>
+								<pre><code data-trim>
+fruits.push("Mango");
+// ["Strawberry", "Banana", "Mango"]
+
+var pos = fruits.indexOf("Banana");
+// 1
+								</code></pre>
+							</section>
+							<section>
+								<h3>Remove an item by Index Position</h3>
+								<pre><code data-trim>
+var removedItem = fruits.splice(pos, 1); // this is how to remove an item
+// ["Strawberry", "Mango"]
+								</code></pre>
+							</section>
+							<section>
+								<h3>Copy an Array</h3>
+								<pre><code data-trim>
+var shallowCopy = fruits.slice(); // this is how to make a copy
+// ["Strawberry", "Mango"]
+								</code></pre>
+							</section>
+
+							<!------------------------------------slide--------------------------------------------- -->
+								<section>
+									<h2>Syntax</h2>
+									<pre><code data-trim>
+[element0, element1, ..., elementN]
+new Array(element0, element1[, ...[, elementN]])
+new Array(arrayLength)
+									</code></pre>
+
+									<h4>elementN</h4>
+									<p>
+										A JavaScript array is initialized with the given elements, except in the case where a single argument is passed to the Array constructor and that argument is a number (see the arrayLength parameter below).Note that this special case only applies to JavaScript arrays created with the Array constructor, not array literals created with the bracket syntax.
+									</p>
+									<h4>arrayLength</h4>
+									<p>
+										If the only argument passed to the Array constructor is an integer between 0 and 232-1 (inclusive), this returns a new JavaScript array with length set to that number. If the argument is any other number, a RangeError exception is thrown.
+									</p>
+								</section>
+
+
 						</section>
 
 			</div><!-- slides -->
