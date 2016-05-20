@@ -129,7 +129,8 @@ var pos = fruits.indexOf("Banana");
 							<section>
 								<h3>Remove an item by Index Position</h3>
 								<pre><code data-trim>
-var removedItem = fruits.splice(pos, 1); // this is how to remove an item
+// this is how to remove an item
+var removedItem = fruits.splice(pos, 1);
 // ["Strawberry", "Mango"]
 								</code></pre>
 							</section>
@@ -140,27 +141,132 @@ var shallowCopy = fruits.slice(); // this is how to make a copy
 // ["Strawberry", "Mango"]
 								</code></pre>
 							</section>
+						</section>
 
-							<!------------------------------------slide--------------------------------------------- -->
-								<section>
-									<h2>Syntax</h2>
-									<pre><code data-trim>
+						<!------------------------------------slide--------------------------------------------- -->
+						<section>
+							<h2>Syntax</h2>
+							<pre><code data-trim>
 [element0, element1, ..., elementN]
 new Array(element0, element1[, ...[, elementN]])
 new Array(arrayLength)
-									</code></pre>
+							</code></pre>
 
-									<h4>elementN</h4>
-									<p>
-										A JavaScript array is initialized with the given elements, except in the case where a single argument is passed to the Array constructor and that argument is a number (see the arrayLength parameter below).Note that this special case only applies to JavaScript arrays created with the Array constructor, not array literals created with the bracket syntax.
-									</p>
-									<h4>arrayLength</h4>
-									<p>
-										If the only argument passed to the Array constructor is an integer between 0 and 232-1 (inclusive), this returns a new JavaScript array with length set to that number. If the argument is any other number, a RangeError exception is thrown.
-									</p>
-								</section>
+							<b>element<i>N</i></b>
+							<p>
+								A JavaScript array is initialized with the given elements, except in the case where a single argument is passed to the Array constructor and that argument is a number.
+							</p>
+							<b>arrayLength</b>
+							<p>
+								If the only argument passed to the Array constructor is an integer between 0 and 2<sup style="font-size:0.5em;">32</sup>-1 (inclusive), this returns a new JavaScript array with length set to that number.
+							</p>
+						</section>
 
+						<!------------------------------------slide--------------------------------------------- -->
+						<section>
+							<h2>Description</h2>
+							<section>
+								<p>
+									Arrays are list-like objects whose prototype has methods to perform traversal and mutation operations.
+								</p>
+							</section>
+							<section>
+								<p>
+									Neither the length of a JavaScript array nor the types of its elements are fixed. Since an array's length can change at any time, and data can be stored at non-contiguous locations in the array
+								</p>
+							</section>
+							<section>
+								 JavaScript arrays are not guaranteed to be dense; this depends on how the programmer chooses to use them.
+							</section>
+						</section>
 
+						<!------------------------------------slide--------------------------------------------- -->
+						<section>
+							<h2>Accessing array elements</h2>
+							<section>
+								<p>
+									JavaScript arrays are zero-indexed: the first element of an array is at index 0, and the last element is at the index equal to the value of the array's length property minus 1.
+								</p>
+								<pre><code data-trim>
+var arr = ['this is the first element', 'this is the second element'];
+console.log(arr[0]);              // logs 'this is the first element'
+console.log(arr[1]);              // logs 'this is the second element'
+console.log(arr[arr.length - 1]); // logs 'this is the second element'
+								</code></pre>
+							</section>
+							<section>
+								<p>
+									Array elements are object properties in the same way that toString is a property, but trying to access an element of an array as follows throws a syntax error, because the property name is not valid:
+								</p>
+								<pre><code data-trim>
+console.log(arr.0); // a syntax error
+								</code></pre>
+							</section>
+							<section>
+								<p>
+									There is nothing special about JavaScript arrays and the properties that cause this. JavaScript properties that begin with a digit cannot be referenced with dot notation; and must be accessed using bracket notation.
+								</p>
+							</section>
+							<section>
+								<pre><code data-trim>
+var years = [1950, 1960, 1970, 1980, 1990, 2000, 2010];
+console.log(years.0);   // a syntax error
+console.log(years[0]);  // works properly
+								</code></pre>
+								<pre><code data-trim>
+renderer.3d.setTexture(model, 'character.png');     // a syntax error
+renderer['3d'].setTexture(model, 'character.png');  // works properly
+								</code></pre>
+							</section>
+						</section>
+						<!------------------------------------slide--------------------------------------------- -->
+						<section>
+							<h2>Relationship between length and numerical properties</h2>
+							<section>
+								<p>
+									A JavaScript array's length property and numerical properties are connected. Several of the built-in array methods (e.g., join, slice, indexOf, etc.) take into account the value of an array's length property when they're called. Other methods (e.g., push, splice, etc.) also result in updates to an array's length property.
+								</p>
+							</section>
+							<section>
+								<pre><code data-trim>
+var fruits = [];
+fruits.push('banana', 'apple', 'peach');
+
+console.log(fruits.length); // 3
+								</code></pre>
+							</section>
+							<section>
+								<p>
+									When setting a property on a JavaScript array when the property is a valid array index and that index is outside the current bounds of the array, the engine will update the array's length property accordingly:
+								</p>
+								<pre><code data-trim>
+fruits[5] = 'mango';
+console.log(fruits[5]); // 'mango'
+console.log(Object.keys(fruits));  // ['0', '1', '2', '5']
+console.log(fruits.length); // 6
+								</code></pre>
+							</section>
+							<section>
+								<p>
+									Increasing the length.
+								</p>
+								<pre><code data-trim>
+fruits.length = 10;
+console.log(Object.keys(fruits)); // ['0', '1', '2', '5']
+console.log(fruits.length); // 10
+								</code></pre>
+							</section>
+							<section>
+								<p>
+									Decreasing the length property does, however, delete elements.
+								</p>
+								<pre><code data-trim>
+fruits.length = 2;
+console.log(Object.keys(fruits)); // ['0', '1']
+console.log(fruits.length); // 2
+								</code></pre>
+
+							</section>
 						</section>
 
 			</div><!-- slides -->
