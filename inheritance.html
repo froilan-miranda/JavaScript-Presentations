@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript Inheritance</title>
+
+		<meta name="Presentation on JavaScript Inheritance">
+		<meta name="author" content="Froilan Miranda">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+			<!------------------------------------slide--------------------------------------------- -->
+				<section>
+					<h1>JavaScript</h1>
+					<h3>Inheritance and the prototype chain</h3>
+					<p>
+						<small>Created by <a href="http://www.zipcoder.io">Froilan Miranda</a></small>
+					</p>
+				</section>
+
+				<!------------------------------------slide--------------------------------------------- -->
+				<section>
+					<h2>Inheritance and the prototype chain</h2>
+					<section>
+						<p>
+							JavaScript is a bit confusing for developers experienced in class-based languages (like Java or C++), as it is dynamic and does not provide a class implementation per se (the class keyword is introduced in ES6, but is syntactical sugar, JavaScript remaining prototype-based).
+						</p>
+					</section>
+					<section>
+						<p>
+When it comes to inheritance, JavaScript only has one construct: objects. Each object has an internal link to another object called its prototype. That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. null, by definition, has no prototype, and acts as the final link in this prototype chain.
+						</p>
+					</section>
+					<section>
+						<p>
+							While this is often considered to be one of JavaScript's weaknesses, the prototypal inheritance model is in fact more powerful than the classic model.
+						</p>
+					</section>
+				</section>
+
+								<!------------------------------------slide--------------------------------------------- -->
+								<section>
+									<h2>Inheriting properties</h2>
+									<section>
+										<p>
+											JavaScript objects are dynamic "bags" of properties (referred to as own properties). JavaScript objects have a link to a prototype object.
+										</p>
+									</section>
+									<section>
+										<p>
+											When trying to access a property of an object, the property will not only be sought on the object but on the prototype of the object, the prototype of the prototype, and so on until either a property with a matching name is found or the end of the prototype chain is reached.
+										</p>
+									</section>
+									<section>
+										<p>Here is what happens when trying to access a property:</p>
+										<pre><code data-trim>
+// Let's assume we have object o, with its own properties a and b:
+// {a: 1, b: 2}
+// o.[[Prototype]] has properties b and c:
+// {b: 3, c: 4}
+// Finally, o.[[Prototype]].[[Prototype]] is null.
+// This is the end of the prototype chain as null,
+// by definition, null has no [[Prototype]].
+// Thus, the full prototype chain looks like:
+// {a:1, b:2} ---> {b:3, c:4} ---> null
+
+console.log(o.a); // 1
+// Is there an 'a' own property on o? Yes, and its value is 1.
+
+console.log(o.b); // 2
+// Is there a 'b' own property on o? Yes, and its value is 2.
+// The prototype also has a 'b' property, but it's not visited.
+// This is called "property shadowing"
+
+console.log(o.c); // 4
+// Is there a 'c' own property on o? No, check its prototype.
+// Is there a 'c' own property on o.[[Prototype]]? Yes, its value is 4.
+
+console.log(o.d); // undefined
+// Is there a 'd' own property on o? No, check its prototype.
+// Is there a 'd' own property on o.[[Prototype]]? No, check its prototype.
+// o.[[Prototype]].[[Prototype]] is null, stop searching,
+// no property found, return undefined
+										</code></pre>
+
+									</section>
+								</section>
+
+
+								<!------------------------------------slide--------------------------------------------- -->
+								<section>
+									<h2>Inheriting "methods"</h2>
+									<section>
+										<p>
+											JavaScript does not have "methods" in the form that class-based languages define them. In JavaScript, any function can be added to an object in the form of a property. An inherited function acts just as any other property, including property shadowing as shown previously (in this case, a form of method overriding).
+										</p>
+									</section>
+									<section>
+										<p>
+											When trying to access a property of an object, the property will not only be sought on the object but on the prototype of the object, the prototype of the prototype, and so on until either a property with a matching name is found or the end of the prototype chain is reached.
+										</p>
+									</section>
+									<section>
+										<pre><code data-trim>
+var o = {
+  a: 2,
+  m: function(b){
+    return this.a + 1;
+  }
+};
+
+console.log(o.m()); // 3
+// When calling o.m in this case, 'this' refers to o
+
+var p = Object.create(o);
+// p is an object that inherits from o
+
+p.a = 12; // creates an own property 'a' on p
+console.log(p.m()); // 13
+// when p.m is called, 'this' refers to p.
+// So when p inherits the function m of o,
+// 'this.a' means p.a, the own property 'a' of p
+										</code></pre>
+									</section>
+								</section>
+
+								<!------------------------------------slide--------------------------------------------- -->
+								<section>
+									<section>
+										<h2>Different ways to create objects and the resulting prototype chain</h2>
+									</section>
+									<section>
+										<h3>Objects created with syntax constructs</h3>
+										<pre><code data-trim>
+var o = {a: 1};
+
+// The newly created object o has Object.prototype as its [[Prototype]]
+// o has no own property named 'hasOwnProperty'
+// hasOwnProperty is an own property of Object.prototype.
+// So o inherits hasOwnProperty from Object.prototype
+// Object.prototype has null as its prototype.
+// o ---> Object.prototype ---> null
+
+var a = ["yo", "whadup", "?"];
+
+// Arrays inherit from Array.prototype
+// (which has methods like indexOf, forEach, etc.)
+// The prototype chain looks like:
+// a ---> Array.prototype ---> Object.prototype ---> null
+
+function f(){
+  return 2;
+}
+
+// Functions inherit from Function.prototype
+// (which has methods like call, bind, etc.)
+// f ---> Function.prototype ---> Object.prototype ---> null
+											</code></pre>
+									</section>
+									<section>
+										<h3>With a constructor</h3>
+										<p>
+											A "constructor" in JavaScript is "just" a function that happens to be called with the new operator.
+										</p>
+										<pre><code data-trim>
+function Graph() {
+  this.vertices = [];
+  this.edges = [];
+}
+
+Graph.prototype = {
+  addVertex: function(v){
+    this.vertices.push(v);
+  }
+};
+
+var g = new Graph();
+// g is an object with own properties 'vertices' and 'edges'.
+// g.[[Prototype]] is the value of Graph.prototype when new Graph() is executed.
+										</code></pre>
+									</section>
+									<section>
+										<h3>With Object.create</h3>
+										<p>
+											ECMAScript 5 introduced a new method: Object.create(). Calling this method creates a new object. The prototype of this object is the first argument of the function:
+										</p>
+										<pre><code data-trim>
+var a = {a: 1};
+// a ---> Object.prototype ---> null
+
+var b = Object.create(a);
+// b ---> a ---> Object.prototype ---> null
+console.log(b.a); // 1 (inherited)
+
+var c = Object.create(b);
+// c ---> b ---> a ---> Object.prototype ---> null
+
+var d = Object.create(null);
+// d ---> null
+console.log(d.hasOwnProperty);
+// undefined, because d doesn't inherit from Object.prototype
+										</code></pre>
+									</section>
+									<section>
+										<h3>With the class keyword</h3>
+										<p>
+											ECMAScript 6 introduced a new set of keywords implementing classes. Although these constructs look like those familiar to developers of class-based languages, they are not the same. JavaScript remains prototype-based. The new keywords include class, constructor, static, extends, and super.
+										</p>
+									</section>
+									<section>
+										<h3>With the class keyword</h3>
+										<pre><code data-trim>
+"use strict";
+
+class Polygon {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+
+class Square extends Polygon {
+  constructor(sideLength) {
+    super(sideLength, sideLength);
+  }
+  get area() {
+    return this.height * this.width;
+  }
+  set sideLength(newLength) {
+    this.height = newLength;
+    this.width = newLength;
+  }
+}
+
+var square = new Square(2);
+										</code></pre>
+
+									</section>
+								</section>
+
+			</div><!-- slides -->
+		</div><!-- reveal -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
