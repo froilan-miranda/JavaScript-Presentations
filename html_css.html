@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>HTML and CSS</title>
+
+		<meta name="Presentation on HTML and CSS">
+		<meta name="author" content="Froilan Miranda">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+			<!------------------------------------slide--------------------------------------------- -->
+				<section>
+					<h1>HTML and CSS</h1>
+					<p>
+						<small>Created by <a href="http://www.zipcoder.io">Froilan Miranda</a></small>
+					</p>
+				</section>
+
+			<!------------------------------------slide--------------------------------------------- -->
+				<section>
+					<section>
+						<h2>Introduction to HTML</h2>
+					</section>
+					<section>
+						<h2>Introduction to HTML</h2>
+						<p>HTML, CSS and JavaScript  form the backbone of all websites and web content.</p>
+						<p>HTML is a simple language and that is perhaps its greatest strength.</p>
+					</section>
+					<section>
+						<h2>Basic HTML Syntax</h2>
+					</section>
+					<section>
+						<p>HTML stands for Hyper Text Markup Language</p>
+					</section>
+					<section>
+						<h2>HTML tags</h2>
+						<pre><code data-trim>
+<p>Welcome to HTML. This is an example of a paragraph tag</p>
+						</code></pre>
+					</section>
+					<section>
+						<p>But in addition to the tags, each of the tags can also have certain attributes.</p>
+						<pre><code data-trim>
+<p lang="en">Welcome to HTML. This is an example of a paragraph tag</p>
+						</code></pre>
+					</section>
+					<section>
+						<p>There is basically two types of attributes.</p>
+						<ul>
+							<li>
+								Informative, which is this in giving extra information about the element
+							</li>
+							<li>
+								Functional, which directly ties to the way a tag operates
+							</li>
+						</ul>
+						<pre><code data-trim>
+<a href="./myWebPage.html">Link to Website</a>
+						</code></pre>
+					</section>
+					<section>
+						<h2>Nesting Tags</h2>
+						<pre><code data-trim>
+<p>Welcome to HTML. <em>This is an example of a paragraph tag</em></p>
+						</code></pre>
+					</section>
+					<section>
+						<h2>A nested tag must close before its parent tag</h2>
+					</section>
+					<section>
+						<pre><code data-trim>
+<p>Welcome to HTML. <em>This is an example of a <strong>paragraph tag</em></p></strong>
+						</code></pre>
+						<p>
+							This is incorrect and will render to the screen in unpredictable ways.
+						</p>
+					</section>
+					<section>
+						<h2>HTML Resources</h2>
+						<ul>
+							<li>
+								<a href="https://www.w3.org/html/">https://www.w3.org/html/</a>
+							</li>
+							<li>
+								<a href="https://whatwg.org/">https://whatwg.org/</a>
+							</li>
+							<li>
+								<a href="https://www.webplatform.org/">https://www.webplatform.org/</a>
+							</li>
+							<li>
+								<a href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Choosing a code editor</h2>
+						<ul>
+							<li>NotePad</li>
+							<li>TextEdit</li>
+							<li>vim/emacs/nano</li>
+							<li>SublimeText</li>
+							<li>Brackets</li>
+							<li>Atom</li>
+							<li>Visual Studio Code</li>
+							<li>Or any other plain text editor</li>
+						</ul>
+						<p><strong>Not MS Word</strong></p>
+					</section>
+				</section>
+
+				<!------------------------------------slide--------------------------------------------- -->
+					<section>
+						<section>
+							<h2>Basic Page Structure</h2>
+						</section>
+						<section>
+							<h2>Web browser developer tools</h2>
+							<p>
+								option + cmd + i
+							</p>
+						</section>
+						<section>
+							<h2>DOCTYPE</h2>
+							<p>
+								You need to have a doctype declaration and you want the doctype to reflect the version of HTML that you'll be writing.
+							</p>
+						</section>
+						<section>
+							<h2>HEAD</h2>
+							<p>
+								Contains function information that is largely invisible<br />
+								Meta tags<br />
+								Title tag
+							</p>
+						</section>
+						<section>
+							<h2>Body</h2>
+							<p>
+								Contains all of the pages visible content.<br />
+								Paragraphs, headings, images, etc.
+							</p>
+						</section>
+						<section>
+							<h2>Content Models</h2>
+							<p>
+								define the type of content expected inside an element, and control syntax rules such as element nesting
+							</p>
+						</section>
+						<section>
+							<h3>The Old</h3>
+							<ul>
+								<li>block level</li>
+								<li>inline level</li>
+							</ul>
+						</section>
+						<section>
+							<h3>The New</h3>
+							<ul>
+								<li>flow</li>
+								<li>metadata</li>
+								<li>embedded</li>
+								<li>interactive</li>
+								<li>heading</li>
+								<li>phrasing</li>
+								<li>sectioning</li>
+							</ul>
+						</section>
+						<section>
+							<a href="https://www.w3.org/TR/2011/WD-html5-20110525/content-models.html">https://www.w3.org/TR/2011/WD-html5-20110525/content-models.html</a>
+						</section>
+					</section>
+
+					<!------------------------------------slide--------------------------------------------- -->
+						<section>
+							<section>
+								<h2>Formatting Page Content</h2>
+							</section>
+							<section>
+								<h2>Formatting content with HTML</h2>
+								<p>
+									And remember HTML is a markup language. And that means that it uses tags to identify content on the page. Well once you're comfortable with the syntax behind how formatting content works. Then it really just becomes a matter of learning which tags are available to you, and the options that you have when you're using them.
+								</p>
+								<pre><code data-trim>
+<pre>
+
+</pre>
+								</code></pre>
+							</section>
+							<section>
+								<p>
+									There was a movement away from presentational tags to logical tags
+								</p>
+								<pre><code data-trim>
+<i></i> vs <em></em>
+<b></b> vs <strong></strong>
+								</code></pre>
+							</section>
+							<section>
+								<h2>Headings</h2>
+								<pre><code data-trim>
+<h1></h1>
+<h2></h2>
+								</code></pre>
+								<p>
+									What we want to do is develop a strategy around using the headings that’s based upon the level of the heading itself and not the size of it, because eventually you're going to be controlling all of that through CSS.
+								</p>
+							</section>
+							<section>
+								<h2>Formatting paragraphs</h2>
+								<pre><code data-trim>
+<p></p>
+								</code></pre>
+								<p>
+									This denotes a paragraph and should be used for every paragraph block.
+								</p>
+							</section>
+							<section>
+								<h2>Controlling line breaks</h2>
+								<pre><code data-trim>
+<br /> or <br>
+								</code></pre>
+								<p>
+									This will create a line break
+								</p>
+							</section>
+							<section>
+								<h2>Emphasizing text</h2>
+								<pre><code data-trim>
+<b></b> - bold
+<strong></strong> - strong
+<i></i> - italic
+<em></em> - emphasis
+								</code></pre>
+							</section>
+							<section>
+								<h2>Displaying special characters</h2>
+								<p>
+									Special characters start with an “&amp;” followed by a special character code and finished with a semicolon.
+								</p>
+								<pre><code data-trim>
+&  amp  ;
+&  lang  ;
+								</code></pre>
+							</section>
+							<section>
+								<h2>Controlling whitespace</h2>
+								<p>
+									Avoid using the non-breaking space character (& nbsp ;) to create white space between characters. Instead by using CSS you will gain better control of creating the desired white space
+								</p>
+							</section>
+							<section>
+								<h2>Displaying Images</h2>
+								<pre><code data-trim>
+									<img src=”./path/to/image.jpg” width=”300” height=”300” alt=”this is a sample image” />
+									<img src=”./path/to/image.jpg” width=”300” height=”300” alt=”this is a sample image” >
+								</code></pre>
+							</section>
+						</section>
+						<!------------------------------------slide--------------------------------------------- -->
+							<section>
+								<section>
+									<h2>Struncturing Content</h2>
+								</section>
+								<section>
+									<h2>Nav element</h2>
+									<pre><code data-trim>
+<nav> </nav>
+									</code></pre>
+								</section>
+								<section>
+									<h2>Article element</h2>
+									<pre><code data-trim>
+<article></article>
+									</code></pre>
+								</section>
+								<section>
+									<h2>Section element</h2>
+									<pre><code data-trim>
+<section></section>
+									</code></pre>
+								</section>
+								<section>
+									<h2>Aside element</h2>
+									<pre><code data-trim>
+<aside></aside>
+									</code></pre>
+								</section>
+								<section>
+									<h2>Div element</h2>
+									<pre><code data-trim>
+<div></div>
+									</code></pre>
+								</section>
+								<section>
+									<h2>Other elements</h2>
+									<pre><code data-trim>
+<header></header>
+<footer></footer>
+<main></main>
+									</code></pre>
+								</section>
+								<section>
+									<h2>Using WAI-ARIA roles</h2>
+									<p>
+										WAI-ARIA stands for Web Accessibility Initiative Accessible Rich Internet Applications. It's a bit of a mouthful, but it's the umbrella name for this specification that's centered on creating accessible sites and applications.
+									</p>
+								</section>
+							</section>
+							<!------------------------------------slide--------------------------------------------- -->
+								<section>
+									<section>
+										<h2>Creating Links</h2>
+									</section>
+									<section>
+										<h2>Anchor element</h2>
+										<pre><code data-trim>
+<a href=”http://www.zipcode.io” title=”zipcode.io” target=”_blank”>zipcoder</a>
+										</code></pre>
+									</section>
+									<section>
+										<h2>Linking to pages within your site</h2>
+										<p>
+											Linking to pages within a site using dot syntax relative to page
+										</p>
+									</section>
+									<section>
+										<h2>Linking to external pages</h2>
+										<p>
+											Linking to external pages (pages from other websites) use the absolute path
+										</p>
+									</section>
+									<section>
+										<h2>Linking to downloadable resources</h2>
+										<p>
+											Use the download attribute
+										</p>
+									</section>
+									<section>
+										<h2>Linking to page regions</h2>
+										<pre><code data-trim>
+<a href=”#one titie=”section on”>link here </a>
+<h3 id=”one”>header</h3>
+										</code></pre>
+									</section>
+								</section>
+
+								<!------------------------------------slide--------------------------------------------- -->
+									<section>
+										<section>
+											<h2>Creating Lists</h2>
+										</section>
+										<section>
+											<p>
+												Lists are incredibly useful ways of organizing content. HTML gives us there different types of lists to use based on how our content needs to be organized and grouped together.
+											</p>
+										</section>
+										<section>
+											<h2>Unordered Lists</h2>
+											<pre><code data-trim>
+<ul>
+    <li>one</li>
+    <li>two</li>
+</ul>
+											</code></pre>
+										</section>
+										<section>
+											<h2>Ordered Lists</h2>
+											<pre><code data-trim>
+<ol>
+    <li>...</li>
+    <li>...</li>
+</ol>
+											</code></pre>
+										</section>
+										<section>
+											<h2>Definition Lists</h2>
+											<p>
+												the individual items within a definition list are made up of multiple items. We have a dt for term and we have a dd for description.
+											</p>
+											<pre><code data-trim>
+<dl>
+	<dt>Unordered list</dt>
+	<dd>Groupoing of list items in no specific order</dd>
+
+	<dt>Ordered list</dt>
+	<dd>Grouping of list items in a specific order</dd>
+
+	<dt>Description list</dt>
+	<dd>Grouping of terms and descriptions</dd>
+</dl>
+											</code></pre>
+										</section>
+									</section>
+
+									<!------------------------------------slide--------------------------------------------- -->
+										<section>
+											<section>
+												<h2>Controlling Styling</h2>
+											</section>
+											<section>
+												<h2>HTML and CSS</h2>
+												<p>
+													It's hard to find two technologies that are as closely intertwined as HTML and CSS.
+												</p>
+												<p>
+													CSS stands for Cascading Style Sheets
+												</p>
+											</section>
+											<section>
+												<h2>Creating inline styles</h2>
+												<pre><code data-trim>
+<h2 style=”color:white;”>super cool heading</h2>
+												</code></pre>
+												<p>
+													Not very efficient
+												</p>
+											</section>
+											<section>
+												<h2>The style element</h2>
+												<pre><code data-trim>
+<style>
+</style>
+												</code></pre>
+												<p>
+													The style tag should be located in the &lt;head&gt; section of the page
+												</p>
+											</section>
+											<section>
+												<h2>Controlling typography</h2>
+												<pre><code data-trim>
+body{
+	width : 70%;
+	margin: 0 auto;
+	//font: 100% Arial, Helvetica, sans-serif;
+}
+
+h1 {
+	font-family: Georgia, “Times New Roman”, serif;
+	font-size: 2em;
+	font-weight: normal;
+	font-style: italic;
+	margin: 1em 0 .4em;
+}
+
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	line-height: 1.6;
+	text-align: justify;
+	width: 60%;
+	margin: 0;
+	margin-bottom: 1em;
+}
+												</code></pre>
+											</section>
+											<section>
+												<h2>Adding Color</h2>
+												<pre><code data-trim>
+html{
+	margin: 0;
+	padding: 0;
+	background-color: #777;
+}
+
+body{
+	width : 70%;
+	margin: 0 auto;
+	font: 100% Arial, Helvetica, sans-serif;
+	background-color: #fff;
+	border-bottom: 10px solid gold;
+}
+
+h1 {
+	font-family: Georgia, “Times New Roman”, serif;
+	font-size: 2em;
+	font-weight: normal;
+	font-style: italic;
+	margin: 1em 0 .4em;
+	background: rgb(44,45,140);
+	color: #ddd;
+}
+
+p {
+	line-height: 1.6;
+	text-align: justify;
+	width: 60%;
+	margin: 0;
+	margin-bottom: 1em;
+}
+
+												</code></pre>
+											</section>
+											<section>
+												<h2>Externalizing styles</h2>
+												<p>
+													Externalizing styles keeps all of your styles in a centralized location to be used across multiple pages
+												</p>
+												<pre><code data-trim>
+<link rel=”stylesheet”  href=”path/to/styles.css”>
+												</code></pre>
+											</section>
+											<section>
+												<h2>CSS Custom Selectors</h2>
+												<p>
+													The class and id attributes allow for more flexible and focused styling
+												</p>
+											</section>
+										</section>
+
+
+			</div><!-- slides -->
+		</div><!-- reveal -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
