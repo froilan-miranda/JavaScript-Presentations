@@ -1,0 +1,14 @@
+body {
+	background-image: url("../images/fb_play.jpg");
+	background-position: center center;
+	background-size: cover;
+	background-blend-mode: overlay;
+}
+
+header a:link,
+header a:active,
+header a:visited,
+header a:hover {
+	text-decoration: none;
+	color: white;
+}
